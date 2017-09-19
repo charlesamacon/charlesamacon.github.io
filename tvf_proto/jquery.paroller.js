@@ -10,7 +10,7 @@
     var elem = $('[data-paroller-factor]');
     var setDirection = {
         bgVertical: function (elem, bgOffset) {
-            return elem.css({'background-position': 'center ' + -bgOffset + 'px'});
+            return elem.css({'background-position': 'right ' + -bgOffset + 'px'});
         },
         bgHorizontal: function (elem, bgOffset) {
             return elem.css({'background-position': -bgOffset + 'px' + ' center'});
