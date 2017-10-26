@@ -1,0 +1,1258 @@
+<!doctype html>
+<!-- Pudding Pop! A personal homepage based on Pudding -->
+<!-- By: Alan Macon - 2016 -->
+<!-- Everything is done client-side, and nothing is ever -->
+<!-- sent back to the server. Spaghetti code ahead. -->
+<html>
+	<head>
+		<meta http-equiv="refresh" content="3600" charset="utf-8">
+		<title>Pudding Pop!</title>
+		<style>
+			@-webkit-keyframes fadeIn { from {opacity:0;} to {opacity:1;}}
+			@-moz-keyframes fadeIn { from {opacity:0;} to {opacity:1;}}
+			@keyframes fadeIn { from {opacity:0;} to {opacity:1;}}
+			
+			body {
+				background-color: #000000;
+				background-repeat: no-repeat;
+				-webkit-background-size: cover;
+				-moz-background-size: cover;
+				-o-background-size: cover;
+				background-size: cover;
+				background-attachment:fixed;
+				background-position:center center;
+				margin-left: 0px;
+				margin-right: 0px;
+				margin-top: 0px;
+				margin-bottom: 0px;
+				overflow: hidden;
+				min-height:100%;
+			}
+			
+			html{
+				width: 100%;
+				height: 100%;
+				
+			}
+			
+			body, td, th {
+				color: #FFFFFF;
+			}
+			
+			.fullscreen-bg {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+				z-index: -100;
+			}
+			
+			div.weather {
+				text-shadow: 2px 2px 10px #AAAAAA;
+				text-align: right;
+				position: absolute;
+				top: 5%;
+				right: 5%;
+				height: 200px;
+				width: 500px;
+				background-color: rgba(33,33,33,.50);
+				border-radius: 10px;
+				
+				opacity: 0;
+				-webkit-animation: fadeIn ease-in 1;
+				-moz-animation: fadeIn ease-in 1;
+				animation: fadeIn ease-in 1;
+				
+				-webkit-animation-fill-mode: forwards;
+				-moz-animation-fill-mode: forwards;
+				animation-fill-mode: forwards;
+				
+				-webkit-animation-duration: 1s;
+				-moz-animation-duration: 1s;
+				animation-duration: 1s;
+				
+				-webkit-animation-delay: 1.7s;
+				-moz-animation-delay: 1.7s;
+				animation-delay: 1.7s;
+			}
+			
+			div.weatherTitle
+			{
+				text-shadow: 2px 2px 10px #AAAAAA;
+				text-align: right;
+				font-size: 20px;
+				position: absolute;
+				top: 3%;
+				right: 2%;
+			}
+			
+			div.weatherLocation
+			{
+				text-shadow: 2px 2px 10px #AAAAAA;
+				text-align: right;
+				font-size: 20px;
+				position: absolute;
+				bottom: 3%;
+				right: 2%;
+			}
+
+			div.weatherCurrentTemp
+			{
+				text-shadow: 2px 2px 10px #AAAAAA;
+				text-align: left;
+				position: absolute;
+				top: 67%;
+				left: 5%;
+				font-size: 50px;	
+			}
+			
+			div.weatherImages
+			{
+				width: 100%;
+				margin-left: auto;
+				margin-right: auto;
+				text-align: center;
+				-ms-text-justify: distribute-all-lines;
+				text-justify: distribute;
+				position: absolute;
+				top: 10%;
+			}
+			
+			div.weatherImages #firstImage
+			{
+				width: 120px;
+				height: 120px;
+				position: absolute;
+				left: 5%;
+				text-align: right;
+				text-shadow: 2px 2px 10px #333333;
+				
+				opacity: 0;
+				-webkit-animation: fadeIn ease-in 1;
+				-moz-animation: fadeIn ease-in 1;
+				animation: fadeIn ease-in 1;
+				
+				-webkit-animation-fill-mode: forwards;
+				-moz-animation-fill-mode: forwards;
+				animation-fill-mode: forwards;
+				
+				-webkit-animation-duration: 1s;
+				-moz-animation-duration: 1s;
+				animation-duration: 1s;
+				
+				-webkit-animation-delay: 2.7s;
+				-moz-animation-delay: 2.7s;
+				animation-delay: 2.7s;
+				
+			}
+
+			div.weatherImages #secondImage
+			{
+				width: 80px;
+				height: 80px;
+				background-size: 145px 100px;
+				position: absolute;
+				left: 30%;
+				top: 35px;
+				text-align: right;
+				text-shadow: 2px 2px 10px #333333;
+				
+				opacity: 0;
+				-webkit-animation: fadeIn ease-in 1;
+				-moz-animation: fadeIn ease-in 1;
+				animation: fadeIn ease-in 1;
+				
+				-webkit-animation-fill-mode: forwards;
+				-moz-animation-fill-mode: forwards;
+				animation-fill-mode: forwards;
+				
+				-webkit-animation-duration: 1s;
+				-moz-animation-duration: 1s;
+				animation-duration: 1s;
+				
+				-webkit-animation-delay: 3.2s;
+				-moz-animation-delay: 3.2s;
+				animation-delay: 3.2s;
+			}
+
+			div.weatherImages #thirdImage
+			{
+				width: 80px;
+				height: 80px;
+				background-size: 145px 100px;
+				position: absolute;
+				left: 48%;
+				top: 35px;
+				text-align: right;
+				text-shadow: 2px 2px 10px #333333;
+				
+				opacity: 0;
+				-webkit-animation: fadeIn ease-in 1;
+				-moz-animation: fadeIn ease-in 1;
+				animation: fadeIn ease-in 1;
+				
+				-webkit-animation-fill-mode: forwards;
+				-moz-animation-fill-mode: forwards;
+				animation-fill-mode: forwards;
+				
+				-webkit-animation-duration: 1s;
+				-moz-animation-duration: 1s;
+				animation-duration: 1s;
+				
+				-webkit-animation-delay: 3.7s;
+				-moz-animation-delay: 3.7s;
+				animation-delay: 3.7s;
+			}
+
+			div.weatherImages #fourthImage
+			{
+				width: 80px;
+				height: 80px;
+				background-size: 145px 100px;
+				position: absolute;
+				left: 65%;
+				top: 35px;
+				text-align: right;
+				text-shadow: 2px 2px 10px #333333;
+				
+				opacity: 0;
+				-webkit-animation: fadeIn ease-in 1;
+				-moz-animation: fadeIn ease-in 1;
+				animation: fadeIn ease-in 1;
+				
+				-webkit-animation-fill-mode: forwards;
+				-moz-animation-fill-mode: forwards;
+				animation-fill-mode: forwards;
+				
+				-webkit-animation-duration: 1s;
+				-moz-animation-duration: 1s;
+				animation-duration: 1s;
+				
+				-webkit-animation-delay: 4.2s;
+				-moz-animation-delay: 4.2s;
+				animation-delay: 4.2s;
+			}
+
+			div.weatherImages #fifthImage
+			{
+				width: 80px;
+				height: 80px;
+				background-size: 145px 100px;
+				position: absolute;
+				left: 82%;
+				top: 35px;
+				text-align: right;
+				text-shadow: 2px 2px 10px #333333;
+				
+				opacity: 0;
+				-webkit-animation: fadeIn ease-in 1;
+				-moz-animation: fadeIn ease-in 1;
+				animation: fadeIn ease-in 1;
+				
+				-webkit-animation-fill-mode: forwards;
+				-moz-animation-fill-mode: forwards;
+				animation-fill-mode: forwards;
+				
+				-webkit-animation-duration: 1s;
+				-moz-animation-duration: 1s;
+				animation-duration: 1s;
+				
+				-webkit-animation-delay: 4.7s;
+				-moz-animation-delay: 4.7s;
+				animation-delay: 4.7s;
+			}
+			
+			div.time
+			{
+				text-shadow: 10px 10px 24px #000000;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				height: 84px;
+				width: 400px;
+				text-align: center;
+				font-size: 80px;
+				z-index: 1003;
+				background-color: rgba(33,33,33,.50);
+				border-radius: 10px;
+				margin: -42px 0 0 -200px;
+				
+				opacity: 0;
+				-webkit-animation: fadeIn ease-in 1;
+				-moz-animation: fadeIn ease-in 1;
+				animation: fadeIn ease-in 1;
+				
+				-webkit-animation-fill-mode: forwards;
+				-moz-animation-fill-mode: forwards;
+				animation-fill-mode: forwards;
+				
+				-webkit-animation-duration: 1s;
+				-moz-animation-duration: 1s;
+				animation-duration: 1s;
+				
+				-webkit-animation-delay: 1.7s;
+				-moz-animation-delay: 1.7s;
+				animation-delay: 1.7s;
+			}
+
+			div.greeting
+			{
+				text-shadow: 10px 10px 24px #000000;
+				position: absolute;
+				top: 65%;
+				left: 50%;
+				height: 30px;
+				width: 400px;
+				margin: -15px 0 0 -200px;
+				text-align: center;
+				font-size: 25px;
+				background-color: rgba(33,33,33,.50);
+				border-radius: 10px;
+				
+				opacity: 0;
+				-webkit-animation: fadeIn ease-in 1;
+				-moz-animation: fadeIn ease-in 1;
+				animation: fadeIn ease-in 1;
+				
+				-webkit-animation-fill-mode: forwards;
+				-moz-animation-fill-mode: forwards;
+				animation-fill-mode: forwards;
+				
+				-webkit-animation-duration: 1s;
+				-moz-animation-duration: 1s;
+				animation-duration: 1s;
+				
+				-webkit-animation-delay: 4.7s;
+				-moz-animation-delay: 4.7s;
+				animation-delay: 4.7s;
+			}
+			
+			div.search
+			{
+				position:absolute;
+				top: 75%;
+				left: 50%;
+				height: 22px;
+				width: 550px;
+				margin: -11px 0 0 -275px;
+				background-color: rgba(33,33,33,.50);
+				text-align: center;
+				border-radius: 10px;
+				
+				opacity: 0;
+				-webkit-animation: fadeIn ease-in 1;
+				-moz-animation: fadeIn ease-in 1;
+				animation: fadeIn ease-in 1;
+				
+				-webkit-animation-fill-mode: forwards;
+				-moz-animation-fill-mode: forwards;
+				animation-fill-mode: forwards;
+				
+				-webkit-animation-duration: 1s;
+				-moz-animation-duration: 1s;
+				animation-duration: 1s;
+				
+				-webkit-animation-delay: 3.4s;
+				-moz-animation-delay: 3.4s;
+				animation-delay: 3.4s;
+			}
+			
+			a {
+				color: #FFFFFF;
+			}
+			
+			div.customLinks
+			{
+				text-shadow: 10px 10px 24px #000000;
+				position: absolute;
+				top: 85%;
+				left: 50%;
+				width: 900px;
+				height: 50px;
+				margin: -25px 0 0 -450px;
+				text-align: center;
+				font-size: 20px;
+				background-color: rgba(33,33,33,.50);
+				border-radius: 10px;
+				
+				opacity: 0;
+				-webkit-animation: fadeIn ease-in 1;
+				-moz-animation: fadeIn ease-in 1;
+				animation: fadeIn ease-in 1;
+				
+				-webkit-animation-fill-mode: forwards;
+				-moz-animation-fill-mode: forwards;
+				animation-fill-mode: forwards;
+				
+				-webkit-animation-duration: 1s;
+				-moz-animation-duration: 1s;
+				animation-duration: 1s;
+				
+				-webkit-animation-delay: 3.7s;
+				-moz-animation-delay: 3.7s;
+				animation-delay: 3.7s;
+			}
+			
+			.config {
+				width:600px;
+				height:700px;
+				position:absolute;
+				top:50%;
+				left:50%;
+				margin:-350px 0 0 -300px;
+				display:none;
+				z-index:1004;
+				background-color: rgba(33,33,33,.75);
+				border-radius: 10px;
+				text-align:center;
+			}
+			
+			.firstTime {
+				width:600px;
+				height:700px;
+				position:absolute;
+				top:50%;
+				left:50%;
+				margin:-350px 0 0 -300px;
+				display:none;
+				z-index:1005;
+				background-color: rgba(33,33,33,.75);
+				border-radius: 10px;
+				text-align:center;
+			}
+		</style>
+		<!-- jQuery and jQuery UI -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+		<!-- SimpleWeather.js -->
+		<script charset="utf-8">
+			/*! simpleWeather v3.1.0 - http://simpleweatherjs.com */
+			(function($) {
+			  'use strict';
+
+			  function getAltTemp(unit, temp) {
+				if(unit === 'f') {
+				  return Math.round((5.0/9.0)*(temp-32.0));
+				} else {
+				  return Math.round((9.0/5.0)*temp+32.0);
+				}
+			  }
+
+			  $.extend({
+				simpleWeather: function(options){
+				  options = $.extend({
+					location: '',
+					woeid: '',
+					unit: 'f',
+					success: function(weather){},
+					error: function(message){}
+				  }, options);
+
+				  var now = new Date();
+				  var weatherUrl = 'https://query.yahooapis.com/v1/public/yql?format=json&rnd=' + now.getFullYear() + now.getMonth() + now.getDay() + now.getHours() + '&diagnostics=true&callback=?&q=';
+
+				  if(options.location !== '') {
+					/* If latitude/longitude coordinates, need to format a little different. */
+					var location = '';
+					if(/^(\-?\d+(\.\d+)?),\s*(\-?\d+(\.\d+)?)$/.test(options.location)) {
+					  location = '(' + options.location + ')';
+					} else {
+					  location = options.location;
+					}
+
+					weatherUrl += 'select * from weather.forecast where woeid in (select woeid from geo.places(1) where text="' + location + '") and u="' + options.unit + '"';
+				  } else if(options.woeid !== '') {
+					weatherUrl += 'select * from weather.forecast where woeid=' + options.woeid + ' and u="' + options.unit + '"';
+				  } else {
+					options.error('Could not retrieve weather due to an invalid location.');
+					return false;
+				  }
+
+				  $.getJSON(
+					encodeURI(weatherUrl),
+					function(data) {
+					  if(data !== null && data.query !== null && data.query.results !== null && data.query.results.channel.description !== 'Yahoo! Weather Error') {
+						var result = data.query.results.channel,
+							weather = {},
+							forecast,
+							compass = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW', 'N'],
+							image404 = 'https://s.yimg.com/os/mit/media/m/weather/images/icons/l/44d-100567.png';
+
+						weather.title = result.item.title;
+						weather.temp = result.item.condition.temp;
+						weather.code = result.item.condition.code;
+						weather.todayCode = result.item.forecast[0].code;
+						weather.currently = result.item.condition.text;
+						weather.high = result.item.forecast[0].high;
+						weather.low = result.item.forecast[0].low;
+						weather.text = result.item.forecast[0].text;
+						weather.humidity = result.atmosphere.humidity;
+						weather.pressure = result.atmosphere.pressure;
+						weather.rising = result.atmosphere.rising;
+						weather.visibility = result.atmosphere.visibility;
+						weather.sunrise = result.astronomy.sunrise;
+						weather.sunset = result.astronomy.sunset;
+						weather.description = result.item.description;
+						weather.city = result.location.city;
+						weather.country = result.location.country;
+						weather.region = result.location.region;
+						weather.updated = result.item.pubDate;
+						weather.link = result.item.link;
+						weather.units = {temp: result.units.temperature, distance: result.units.distance, pressure: result.units.pressure, speed: result.units.speed};
+						weather.wind = {chill: result.wind.chill, direction: compass[Math.round(result.wind.direction / 22.5)], speed: result.wind.speed};
+
+						if(result.item.condition.temp < 80 && result.atmosphere.humidity < 40) {
+						  weather.heatindex = -42.379+2.04901523*result.item.condition.temp+10.14333127*result.atmosphere.humidity-0.22475541*result.item.condition.temp*result.atmosphere.humidity-6.83783*(Math.pow(10, -3))*(Math.pow(result.item.condition.temp, 2))-5.481717*(Math.pow(10, -2))*(Math.pow(result.atmosphere.humidity, 2))+1.22874*(Math.pow(10, -3))*(Math.pow(result.item.condition.temp, 2))*result.atmosphere.humidity+8.5282*(Math.pow(10, -4))*result.item.condition.temp*(Math.pow(result.atmosphere.humidity, 2))-1.99*(Math.pow(10, -6))*(Math.pow(result.item.condition.temp, 2))*(Math.pow(result.atmosphere.humidity,2));
+						} else {
+						  weather.heatindex = result.item.condition.temp;
+						}
+
+						if(result.item.condition.code == '3200') {
+						  weather.thumbnail = image404;
+						  weather.image = image404;
+						} else {
+						  weather.thumbnail = 'https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/' + result.item.condition.code + 'ds.png';
+						  weather.image = 'https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/' + result.item.condition.code + 'd.png';
+						}
+
+						weather.alt = {temp: getAltTemp(options.unit, result.item.condition.temp), high: getAltTemp(options.unit, result.item.forecast[0].high), low: getAltTemp(options.unit, result.item.forecast[0].low)};
+						if(options.unit === 'f') {
+						  weather.alt.unit = 'c';
+						} else {
+						  weather.alt.unit = 'f';
+						}
+
+						weather.forecast = [];
+						for(var i=0;i<result.item.forecast.length;i++) {
+						  forecast = result.item.forecast[i];
+						  forecast.alt = {high: getAltTemp(options.unit, result.item.forecast[i].high), low: getAltTemp(options.unit, result.item.forecast[i].low)};
+
+						  if(result.item.forecast[i].code == "3200") {
+							forecast.thumbnail = image404;
+							forecast.image = image404;
+						  } else {
+							forecast.thumbnail = 'https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/' + result.item.forecast[i].code + 'ds.png';
+							forecast.image = 'https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/' + result.item.forecast[i].code + 'd.png';
+						  }
+
+						  weather.forecast.push(forecast);
+						}
+
+						options.success(weather);
+					  } else {
+						options.error('There was a problem retrieving the latest weather information.');
+					  }
+					}
+				  );
+				  return this;
+				}
+			  });
+			})(jQuery);
+		</script>
+		<!-- Weather Stuff -->
+		<script type="text/javascript" charset="utf-8">
+			var loc = 'Keller, tx';
+			var defaultMode = false;
+
+			$(document).ready(function() {
+				
+				getInfo();
+				getWeather();
+				
+			});
+
+			function getInfo() {
+				
+				// credit to https://www.grey-panther.net/js-geolocation
+				$.getJSON("https://us-js-geolocation.appspot.com/api/geolocation?format=json",
+				function(data)
+				{
+					//console.log("Attempting Geolocation through js-geolocation");
+					//console.log(data.city);
+					//console.log(data.region);
+					loc = data.city.toUpperCase() + ", " + data.region.toUpperCase();
+				});
+			
+				//console.log("Trying to get info");
+				//console.log(loc);
+			}
+
+			function getWeather()
+			{
+				setInterval(getWeather, 300000);
+
+			$.simpleWeather({
+					location:loc,
+					unit: 'f',
+					success:function(weather){
+						"use strict";
+						var currentTemp = weather.temp + '&deg;' + weather.units.temp;
+						var code = weather.code;
+						//console.log("Weather code: " + code);
+						//console.log("Weather Location: " + loc);
+						$("#weatherCurrentTemp").html(currentTemp);
+						
+						var weather0 = '<font color="#FFAAAA" size="5">' + weather.forecast[0].high + '</font><br><font color="#AAAAFF" size="5">' + weather.forecast[0].low +'</font>';
+						var weather1 = '<font color="#FFAAAA"><br><br>' + weather.forecast[1].high + '</font><br><font color="#AAAAFF">' + weather.forecast[1].low +'</font>';
+						var weather2 = '<font color="#FFAAAA"><br><br>' + weather.forecast[2].high + '</font><br><font color="#AAAAFF">' + weather.forecast[2].low +'</font>';
+						var weather3 = '<font color="#FFAAAA"><br><br>' + weather.forecast[3].high + '</font><br><font color="#AAAAFF">' + weather.forecast[3].low +'</font>';
+						var weather4 = '<font color="#FFAAAA"><br><br>' + weather.forecast[4].high + '</font><br><font color="#AAAAFF">' + weather.forecast[4].low +'</font>';
+						
+						$("#firstImage").html(weather0);
+						$("#secondImage").html(weather1);
+						$("#thirdImage").html(weather2);
+						$("#fourthImage").html(weather3);
+						$("#fifthImage").html(weather4);
+						
+						var weatherImage0 = "url('" + weather.image + "')";
+						var weatherImage1 = "url('" + weather.forecast[1].image + "')";
+						var weatherImage2 = "url('" + weather.forecast[2].image + "')";
+						var weatherImage3 = "url('" + weather.forecast[3].image + "')";
+						var weatherImage4 = "url('" + weather.forecast[4].image + "')";
+						
+						document.getElementById("firstImage").style.backgroundImage = weatherImage0;
+						document.getElementById("secondImage").style.backgroundImage = weatherImage1;
+						document.getElementById("thirdImage").style.backgroundImage = weatherImage2;
+						document.getElementById("fourthImage").style.backgroundImage = weatherImage3;
+						document.getElementById("fifthImage").style.backgroundImage = weatherImage4;
+						$("#weatherLocation").html(loc);
+												
+					},
+					error:function(error){
+						"use strict";
+						//console.log("Weather: Bad things happened...");
+						//console.log("Weather: Displaying basic video...");
+						//console.log("Weather: " + error);
+						document.getElementById('error').innerHTML = 'WEATHER ERROR: There was a problem retrieving the latest weather information.';
+					}		
+				});
+			}
+		</script>
+		<!-- Time Stuff -->
+		<script type="text/javascript" charset="utf-8">
+			var user = "USER";
+			function startTime()
+			{
+				"use strict";
+				var today = new Date();
+				var h = today.getHours();
+				var m = today.getMinutes();
+				var dayOfTheWeek = today.getDay();
+				var dayOfTheMonth = today.getDate();
+				var thisMonth = today.getMonth();
+				var actualDay, actualMonth;
+				m = checkTime(m);
+				
+				switch (dayOfTheWeek)
+				{
+					case 0:
+						actualDay = "Sunday";
+						break;
+					case 1:
+						actualDay = "Monday";
+						break;
+					case 2:
+						actualDay = "Tuesday";
+						break;
+					case 3:
+						actualDay = "Wednesday";
+						break;
+					case 4:
+						actualDay = "Thursday";
+						break;
+					case 5:
+						actualDay = "Friday";
+						break;
+					case 6:
+						actualDay = "Saturday";
+						break;					
+				}
+				
+				switch (thisMonth)
+				{
+					case 0:
+						actualMonth = "January";
+						break;
+					case 1:
+						actualMonth = "February";
+						break;
+					case 2:
+						actualMonth = "March";
+						break;
+					case 3:
+						actualMonth = "April";
+						break;
+					case 4:
+						actualMonth = "May";
+						break;
+					case 5:
+						actualMonth = "June";
+						break;
+					case 6:
+						actualMonth = "July";
+						break;
+					case 7:
+						actualMonth = "August";
+						break;		
+					case 8:
+						actualMonth = "September";
+						break;	
+					case 9:
+						actualMonth = "October";
+						break;	
+					case 10:
+						actualMonth = "November";
+						break;	
+					case 11:
+						actualMonth = "December";
+						break;				
+				}
+				
+				if (dayOfTheMonth == 1 || dayOfTheMonth == 21 || dayOfTheMonth == 31)
+				{
+					document.getElementById('weatherTitle').innerHTML = actualDay + ", " + actualMonth + " " + dayOfTheMonth + "st";
+				}
+				else if (dayOfTheMonth == 2 || dayOfTheMonth == 22)
+				{
+					document.getElementById('weatherTitle').innerHTML = actualDay + ", " + actualMonth + " " + dayOfTheMonth + "nd";
+				}
+				else if (dayOfTheMonth == 3 || dayOfTheMonth == 23)
+				{
+					document.getElementById('weatherTitle').innerHTML = actualDay + ", " + actualMonth + " " + dayOfTheMonth + "rd";
+				}
+				else
+				{
+					document.getElementById('weatherTitle').innerHTML = actualDay + ", " + actualMonth + " " + dayOfTheMonth + "th";
+				}
+				
+				if (h > 12)
+				{
+					document.getElementById('time').innerHTML = (h - 12) + ":" + m + " PM";
+				}
+				else if (h == 12)
+				{
+					document.getElementById('time').innerHTML = h + ": " + m + " PM";
+				}
+				else if (h == 0)
+				{
+					document.getElementById('time').innerHTML = "12:" + m + " AM";
+				}
+				else
+				{
+					document.getElementById('time').innerHTML = h + ":" + m + " AM";
+				}
+				var t = setTimeout(startTime, 500);
+			}
+			function checkTime(i)
+			{
+				"use strict";
+				if ( i < 10)
+				{
+					i = "0" + i;	
+				}
+				return i;
+			}
+		</script>
+		<!-- Greetings Stuff -->
+		<script type="text/javascript" charset="utf-8">
+						
+			function greetings()
+			{
+				"use strict";
+				
+				if (localStorage.getItem("name") === null || localStorage.getItem("linkTitle1") === null)
+				{
+					document.getElementById('firstTime').style.display = "block";
+					var user = "USER";
+				}
+				else
+				{
+					//document.getElementById('firstTime').style.display = "none";
+					var user = decodeURI(localStorage.getItem("name"));
+				}
+				
+				var today = new Date();
+				var h = today.getHours();
+								
+				if (h > 11)
+				{
+					if ( h > 17)
+					{
+						document.getElementById('greeting').innerHTML = "Good Evening, " + user;
+					}
+					else
+					{
+						document.getElementById('greeting').innerHTML = "Good Afternoon, " + user;
+					}
+				}
+				else
+				{
+					if ( h > 7)
+					{
+						document.getElementById('greeting').innerHTML = "Good Morning, " + user;
+					}
+					else if (h > 4)
+					{
+						document.getElementById('greeting').innerHTML = "Early start, " + user + "?";
+					}
+					else if (h < 3)
+					{
+						document.getElementById('greeting').innerHTML = "Burning the midnight oil, " + user + "?";
+					}
+					else
+					{
+						document.getElementById('greeting').innerHTML = "Why are you still awake, " + user + "?";	
+					}
+				}
+				var t = setTimeout(greetings, 500);
+			}
+		</script>
+		<!-- Flickr API Stuff -->
+		<script type="text/javascript" charset="utf-8">
+			//console.log("Trying to get background from Flickr");
+			
+			if (localStorage.getItem("tags") === null)
+			{
+				var tags = "space, milky way, landscapes"
+			}
+			else
+			{
+				var tags = decodeURI(localStorage.getItem("tags"));
+			}
+			
+			$(document).ready(function()
+			{
+				$.getJSON("https://api.flickr.com/services/rest",
+				{
+					method: "flickr.photos.search",
+					tags: tags,
+					api_key: "66dc95f8de63556574f6a9d3da8e7b38",
+					tagmode: "any",
+					format: "json",
+					nojsoncallback: 1,
+					per_page: 100
+				},
+				function(data) 
+				{
+					if(data.stat == "ok")
+					{
+						var photo = data.photos.photo[ Math.floor( Math.random() * data.photos.photo.length ) ];
+						
+						$.getJSON("https://api.flickr.com/services/rest",
+						{
+							method: "flickr.photos.getSizes",
+							api_key: "66dc95f8de63556574f6a9d3da8e7b38",
+							photo_id: photo.id,
+							format: "json",
+							nojsoncallback: 1
+						},
+						function(response)
+						{
+							////console.log(response);
+							//console.log("Image array length: " + response.sizes.size.length);
+							var respLength = response.sizes.size.length - 1;
+							
+							if (respLength > 9)
+							{
+								//console.log("Image too big, switching to smaller size");
+								respLength = 9;
+							}
+							
+							if(response.stat == "ok")
+							{
+								var the_url = response.sizes.size[respLength].source;
+								$('body').css('background-image', "url('" + the_url + "')");
+								//console.log("Returned largest possible image (within reason)");
+							}
+							else{
+								//console.log("Response Status Not Ok");
+							}
+						});		
+					}
+					else
+					{
+						//console.log("Data Status Not Ok");
+					}
+				});
+			});
+		</script>
+		<!-- Config Popup Stuff -->
+		<script type="text/javascript" charset="utf-8">
+			function showPopup(id) {
+				var popup = document.getElementById(id);
+				popup.style.display = 'block';
+			}
+		</script>
+		<!-- Link Population Stuff -->
+		<script type="text/javascript" charset="utf-8">
+			function populateLinks()
+			{
+				"use strict";
+				var tempHTML;
+				
+				var title1 = localStorage.getItem("linkTitle1");
+				var title2 = localStorage.getItem("linkTitle2");
+				var title3 = localStorage.getItem("linkTitle3");
+				var title4 = localStorage.getItem("linkTitle4");
+				var title5 = localStorage.getItem("linkTitle5");
+				var title6 = localStorage.getItem("linkTitle6");
+				var title7 = localStorage.getItem("linkTitle7");
+				var title8 = localStorage.getItem("linkTitle8");
+				var title9 = localStorage.getItem("linkTitle9");
+				var title10 = localStorage.getItem("linkTitle10");
+				var title11 = localStorage.getItem("linkTitle11");
+				var title12 = localStorage.getItem("linkTitle12");
+				var link1 = localStorage.getItem("link1");
+				var link2 = localStorage.getItem("link2");
+				var link3 = localStorage.getItem("link3");
+				var link4 = localStorage.getItem("link4");
+				var link5 = localStorage.getItem("link5");
+				var link6 = localStorage.getItem("link6");
+				var link7 = localStorage.getItem("link7");
+				var link8 = localStorage.getItem("link8");
+				var link9 = localStorage.getItem("link9");
+				var link10 = localStorage.getItem("link10");
+				var link11 = localStorage.getItem("link11");
+				var link12 = localStorage.getItem("link12");
+				
+				if (title1 === null)
+				{
+					//console.log("No links stored");
+				}
+				else
+				{
+					//console.log("First Link: " + title1);
+					tempHTML = '<img src="https://www.google.com/s2/favicons?domain=' + link1 + '" height="16px" width="16px"><a href="http://' + link1 + '">' + title1 + '</a>';
+				}
+				
+				if (title2 === null)
+				{
+					//console.log("No second link");
+				}
+				else
+				{
+					//console.log("Second Link: " + title2);
+					tempHTML += ' - <img src="https://www.google.com/s2/favicons?domain=' + link2 + '" height="16px" width="16px"><a href="http://' + link2 + '">' + title2 + '</a>';
+				}
+				
+				if (title3 === null || title3 === "")
+				{
+					//console.log("No third link");
+				}
+				else
+				{
+					//console.log("Third Link: " + title3);
+					tempHTML += ' - <img src="https://www.google.com/s2/favicons?domain=' + link3 + '" height="16px" width="16px"><a href="http://' + link3 + '">' + title3 + '</a>';
+				}
+				
+				if (title4 === null || title4 === "")
+				{
+					//console.log("No fourth link");
+				}
+				else
+				{
+					//console.log("Fourth Link: " + title4);
+					tempHTML += ' - <img src="https://www.google.com/s2/favicons?domain=' + link4 + '" height="16px" width="16px"><a href="http://' + link4 + '">' + title4 + '</a>';
+				}
+				
+				if (title5 === null || title5 === "")
+				{
+					//console.log("No fifth link");
+				}
+				else
+				{
+					tempHTML += ' - <img src="https://www.google.com/s2/favicons?domain=' + link5 + '" height="16px" width="16px"><a href="http://' + link5 + '">' + title5 + '</a>';
+				}
+				
+				if (title6 === null || title6 === "")
+				{
+					//console.log("No sixth link");
+				}
+				else
+				{
+					tempHTML += ' - <img src="https://www.google.com/s2/favicons?domain=' + link6 + '" height="16px" width="16px"><a href="http://' + link6 + '">' + title6 + '</a>';
+				}
+				
+				if (title7 === null || title7 === "")
+				{
+					//console.log("No seventh link");
+				}
+				else
+				{
+					tempHTML += '<br><img src="https://www.google.com/s2/favicons?domain=' + link7 + '" height="16px" width="16px"><a href="http://' + link7 + '">' + title7 + '</a>';
+				}
+				if (title8 === null || title8 === "")
+				{
+					//console.log("No eighth link");
+				}
+				else
+				{
+					tempHTML += ' - <img src="https://www.google.com/s2/favicons?domain=' + link8 + '" height="16px" width="16px"><a href="http://' + link8 + '">' + title8 + '</a>';
+				}
+				if (title9 === null || title9 === "")
+				{
+					//console.log("No ninth link");
+				}
+				else
+				{
+					tempHTML += ' - <img src="https://www.google.com/s2/favicons?domain=' + link9 + '" height="16px" width="16px"><a href="http://' + link9 + '">' + title9 + '</a>';
+				}
+				if (title10 === null || title10 === "")
+				{
+					//console.log("No tenth link");
+				}
+				else
+				{
+					tempHTML += ' - <img src="https://www.google.com/s2/favicons?domain=' + link10 + '" height="16px" width="16px"><a href="http://' + link10 + '">' + title10 + '</a>';
+				}
+				if (title11 === null || title11 === "")
+				{
+					//console.log("No eleventh link");
+				}
+				else
+				{
+					tempHTML += ' - <img src="https://www.google.com/s2/favicons?domain=' + link11 + '" height="16px" width="16px"><a href="http://' + link11 + '">' + title11 + '</a>';
+				}
+				if (title12 === null || title12 === "")
+				{
+					//console.log("No twelfth link");
+				}
+				else
+				{
+					tempHTML += ' - <img src="https://www.google.com/s2/favicons?domain=' + link12 + '" height="16px" width="16px"><a href="http://' + link12 + '">' + title12 + '</a>';
+				}
+				
+				document.getElementById('customLinks').innerHTML = tempHTML;	
+			}
+		</script>
+		<!-- jQuery UI Stuff -->
+		<script type="text/javascript">
+			$( init );
+			
+			function init() {
+			
+				var sPositions = localStorage.positions || "{}",
+				positions = JSON.parse(sPositions);
+				
+				$.each(positions, function(id, pos){
+					$("#" + id).css(pos)
+				})
+			
+				$('#weather').draggable({
+					scroll: false,
+					stop: function (event, ui) {
+						positions[this.id] = ui.position
+						localStorage.positions = JSON.stringify(positions)
+					}
+				});
+				//$('#weather').resizable();
+				$('#time').draggable({
+					scroll: false,
+					stop: function (event, ui) {
+						positions[this.id] = ui.position
+						localStorage.positions = JSON.stringify(positions)
+					}
+				});
+				$('#time').resizable();
+				$('#greeting').draggable({
+					scroll: false,
+					stop: function (event, ui) {
+						positions[this.id] = ui.position
+						localStorage.positions = JSON.stringify(positions)
+					}
+				});
+				$('#greeting').resizable();
+				$('#customLinks').draggable({
+					scroll: false,
+					stop: function (event, ui) {
+						positions[this.id] = ui.position
+						localStorage.positions = JSON.stringify(positions)
+					}
+				});
+				$('#customLinks').resizable();
+				$('#search').draggable({
+					scroll: false,
+					stop: function (event, ui) {
+						positions[this.id] = ui.position
+						localStorage.positions = JSON.stringify(positions)
+					}
+				});
+			}
+			
+			function resetPositions() {
+				localStorage.removeItem("positions");
+			}
+		</script>
+		
+	</head>
+	
+	<body onload="startTime(), greetings(), populateLinks()">
+		<!-- Error -->
+		<div class="error" id="error"></div>
+		
+		<!-- Time -->
+		<div class="time" id="time">----</div>
+		
+		<!-- Weather -->
+		<div class="weather" id="weather">
+			<div class="weatherTitle" id="weatherTitle">WEATHER</div>
+			<div class="weatherImages">
+				<div id="firstImage"><font color="#FFAAAA" size="5">---</font></div>
+				<div id="secondImage"><font color="#FFAAAA">---</font></div>
+				<div id="thirdImage"><font color="#FFAAAA">---</font></div>
+				<div id="fourthImage"><font color="#FFAAAA">---</font></div>
+				<div id="fifthImage"><font color="#FFAAAA">---</font></div>
+			</div>
+			<div class="weatherCurrentTemp" id="weatherCurrentTemp">---</div>
+			<div class="weatherLocation" id="weatherLocation">---</div>
+		</div>
+		
+		<!-- Greeting -->
+		<div class="greeting" id="greeting">---</div>
+		
+		<!-- Background -->
+		<div class="fullscreen-bg" id="fullscreen-bg"></div>
+		
+		<!-- Links -->
+		<div class="customLinks" id="customLinks">
+		
+		</div>
+		
+		<!-- Configuration -->
+		<div class="config" id="config">
+			<h1>Configuration:</h1>
+			Your name: <input id="name" type="text" name="name" maxlength="20"><br>
+			<a href="javascript:void(0)" onClick="document.getElementById('config').style.display='none';localStorage.setItem('name', encodeURI(document.getElementById('name').value));greetings()">Save Just Name</a><br>
+			<br>Location determined via geolocation.<br><br>
+			Custom Flickr Tags (separate with comma): <input id="c_tags" type="text" name="c_tags"><a href="javascript:void(0)" onClick="localStorage.setItem('tags', document.getElementById('c_tags').value); location.reload()"><br>Set Tags</a><br><br>
+			Custom Links (no need to type http:// just www.something.com):<br><br>
+			First Line<br>
+			Title: <input id="c_linkTitle1" type="text" name="c_linkTitle1"> Link: <input id="c_link1" type="text" name="c_link1"><br>
+			Title: <input id="c_linkTitle2" type="text" name="c_linkTitle2"> Link: <input id="c_link2" type="text" name="c_link2"><br>
+			Title: <input id="c_linkTitle3" type="text" name="c_linkTitle3"> Link: <input id="c_link3" type="text" name="c_link3"><br>
+			Title: <input id="c_linkTitle4" type="text" name="c_linkTitle4"> Link: <input id="c_link4" type="text" name="c_link4"><br>
+			Title: <input id="c_linkTitle5" type="text" name="c_linkTitle5"> Link: <input id="c_link5" type="text" name="c_link5"><br>
+			Title: <input id="c_linkTitle6" type="text" name="c_linkTitle6"> Link: <input id="c_link6" type="text" name="c_link6"><br><br>
+			Second Line<br>
+			Title: <input id="c_linkTitle7" type="text" name="c_linkTitle7"> Link: <input id="c_link7" type="text" name="c_link7"><br>
+			Title: <input id="c_linkTitle8" type="text" name="c_linkTitle8"> Link: <input id="c_link8" type="text" name="c_link8"><br>
+			Title: <input id="c_linkTitle9" type="text" name="c_linkTitle9"> Link: <input id="c_link9" type="text" name="c_link9"><br>
+			Title: <input id="c_linkTitle10" type="text" name="c_linkTitle10"> Link: <input id="c_link10" type="text" name="c_link10"><br>
+			Title: <input id="c_linkTitle11" type="text" name="c_linkTitle11"> Link: <input id="c_link11" type="text" name="c_link11"><br>
+			Title: <input id="c_linkTitle12" type="text" name="c_linkTitle12"> Link: <input id="c_link12" type="text" name="c_link12"><br><br>
+			<!-- Wow, this part is ugly as sin -->
+			<a href="javascript:void(0)" onClick="document.getElementById('config').style.display='none';
+			localStorage.setItem('linkTitle1', encodeURI(document.getElementById('c_linkTitle1').value));
+			localStorage.setItem('linkTitle2', encodeURI(document.getElementById('c_linkTitle2').value));
+			localStorage.setItem('linkTitle3', encodeURI(document.getElementById('c_linkTitle3').value));
+			localStorage.setItem('linkTitle4', encodeURI(document.getElementById('c_linkTitle4').value));
+			localStorage.setItem('linkTitle5', encodeURI(document.getElementById('c_linkTitle5').value));
+			localStorage.setItem('linkTitle6', encodeURI(document.getElementById('c_linkTitle6').value));
+			localStorage.setItem('linkTitle7', encodeURI(document.getElementById('c_linkTitle7').value));
+			localStorage.setItem('linkTitle8', encodeURI(document.getElementById('c_linkTitle8').value));
+			localStorage.setItem('linkTitle9', encodeURI(document.getElementById('c_linkTitle9').value));
+			localStorage.setItem('linkTitle10', encodeURI(document.getElementById('c_linkTitle10').value));
+			localStorage.setItem('linkTitle11', encodeURI(document.getElementById('c_linkTitle11').value));
+			localStorage.setItem('linkTitle12', encodeURI(document.getElementById('c_linkTitle12').value));
+			localStorage.setItem('link1', encodeURI(document.getElementById('c_link1').value));
+			localStorage.setItem('link2', encodeURI(document.getElementById('c_link2').value));
+			localStorage.setItem('link3', encodeURI(document.getElementById('c_link3').value));
+			localStorage.setItem('link4', encodeURI(document.getElementById('c_link4').value));
+			localStorage.setItem('link5', encodeURI(document.getElementById('c_link5').value));
+			localStorage.setItem('link6', encodeURI(document.getElementById('c_link6').value));
+			localStorage.setItem('link7', encodeURI(document.getElementById('c_link7').value));
+			localStorage.setItem('link8', encodeURI(document.getElementById('c_link8').value));
+			localStorage.setItem('link9', encodeURI(document.getElementById('c_link9').value));
+			localStorage.setItem('link10', encodeURI(document.getElementById('c_link10').value));
+			localStorage.setItem('link11', encodeURI(document.getElementById('c_link11').value));
+			localStorage.setItem('link12', encodeURI(document.getElementById('c_link12').value));
+			greetings();populateLinks()">Save Just Links</a><br><br>
+			<a href="javascript:void(0)" onClick="document.getElementById('config').style.display='none'">Cancel</a>
+			<a href="javascript:void(0)" onClick="document.getElementById('config').style.display='none';localStorage.setItem('name', encodeURI(document.getElementById('name').value));
+			localStorage.setItem('linkTitle1', encodeURI(document.getElementById('c_linkTitle1').value));
+			localStorage.setItem('linkTitle2', encodeURI(document.getElementById('c_linkTitle2').value));
+			localStorage.setItem('linkTitle3', encodeURI(document.getElementById('c_linkTitle3').value));
+			localStorage.setItem('linkTitle4', encodeURI(document.getElementById('c_linkTitle4').value));
+			localStorage.setItem('linkTitle5', encodeURI(document.getElementById('c_linkTitle5').value));
+			localStorage.setItem('linkTitle6', encodeURI(document.getElementById('c_linkTitle6').value));
+			localStorage.setItem('linkTitle7', encodeURI(document.getElementById('c_linkTitle7').value));
+			localStorage.setItem('linkTitle8', encodeURI(document.getElementById('c_linkTitle8').value));
+			localStorage.setItem('linkTitle9', encodeURI(document.getElementById('c_linkTitle9').value));
+			localStorage.setItem('linkTitle10', encodeURI(document.getElementById('c_linkTitle10').value));
+			localStorage.setItem('linkTitle11', encodeURI(document.getElementById('c_linkTitle11').value));
+			localStorage.setItem('linkTitle12', encodeURI(document.getElementById('c_linkTitle12').value));
+			localStorage.setItem('link1', encodeURI(document.getElementById('c_link1').value));
+			localStorage.setItem('link2', encodeURI(document.getElementById('c_link2').value));
+			localStorage.setItem('link3', encodeURI(document.getElementById('c_link3').value));
+			localStorage.setItem('link4', encodeURI(document.getElementById('c_link4').value));
+			localStorage.setItem('link5', encodeURI(document.getElementById('c_link5').value));
+			localStorage.setItem('link6', encodeURI(document.getElementById('c_link6').value));
+			localStorage.setItem('link7', encodeURI(document.getElementById('c_link7').value));
+			localStorage.setItem('link8', encodeURI(document.getElementById('c_link8').value));
+			localStorage.setItem('link9', encodeURI(document.getElementById('c_link9').value));
+			localStorage.setItem('link10', encodeURI(document.getElementById('c_link10').value));
+			localStorage.setItem('link11', encodeURI(document.getElementById('c_link11').value));
+			localStorage.setItem('link12', encodeURI(document.getElementById('c_link12').value));
+			greetings();populateLinks()">Save All</a><br><br>
+			<a href="javascript:void(0)" onClick="resetPositions(), location.reload()">Reset Widget Positions</a>
+		</div>
+		
+		<!-- First Time Window -->
+		<div class="firstTime" id="firstTime">
+			<h1>First Time Setup:</h1>
+			With any luck, this will be the only time you have to do this.<br><br>
+			Your name: <input id="name2" type="text" name="name2" maxlength="10"><br><br>
+			Custom Links (no need to type http:// just www.something.com):<br>
+			First Line<br>
+			Title: <input id="f_linkTitle1" type="text" name="f_linkTitle1"> Link: <input id="f_link1" type="text" name="f_link1"><br>
+			Title: <input id="f_linkTitle2" type="text" name="f_linkTitle2"> Link: <input id="f_link2" type="text" name="f_link2"><br>
+			Title: <input id="f_linkTitle3" type="text" name="f_linkTitle3"> Link: <input id="f_link3" type="text" name="f_link3"><br>
+			Title: <input id="f_linkTitle4" type="text" name="f_linkTitle4"> Link: <input id="f_link4" type="text" name="f_link4"><br>
+			Title: <input id="f_linkTitle5" type="text" name="f_linkTitle5"> Link: <input id="f_link5" type="text" name="f_link5"><br>
+			Title: <input id="f_linkTitle6" type="text" name="f_linkTitle6"> Link: <input id="f_link6" type="text" name="f_link6"><br>
+			Second Line<br>
+			Title: <input id="f_linkTitle7" type="text" name="f_linkTitle7"> Link: <input id="f_link7" type="text" name="f_link7"><br>
+			Title: <input id="f_linkTitle8" type="text" name="f_linkTitle8"> Link: <input id="f_link8" type="text" name="f_link8"><br>
+			Title: <input id="f_linkTitle9" type="text" name="f_linkTitle9"> Link: <input id="f_link9" type="text" name="f_link9"><br>
+			Title: <input id="f_linkTitle10" type="text" name="f_linkTitle10"> Link: <input id="f_link10" type="text" name="f_link10"><br>
+			Title: <input id="f_linkTitle11" type="text" name="f_linkTitle11"> Link: <input id="f_link11" type="text" name="f_link11"><br>
+			Title: <input id="f_linkTitle12" type="text" name="f_linkTitle12"> Link: <input id="f_link12" type="text" name="f_link12"><br><br>
+			<a href="javascript:void(0)" onClick="document.getElementById('firstTime').style.display='none';localStorage.setItem('name', encodeURI(document.getElementById('name2').value));
+			localStorage.setItem('linkTitle1', encodeURI(document.getElementById('f_linkTitle1').value));
+			localStorage.setItem('linkTitle2', encodeURI(document.getElementById('f_linkTitle2').value));
+			localStorage.setItem('linkTitle3', encodeURI(document.getElementById('f_linkTitle3').value));
+			localStorage.setItem('linkTitle4', encodeURI(document.getElementById('f_linkTitle4').value));
+			localStorage.setItem('linkTitle5', encodeURI(document.getElementById('f_linkTitle5').value));
+			localStorage.setItem('linkTitle6', encodeURI(document.getElementById('f_linkTitle6').value));
+			localStorage.setItem('linkTitle7', encodeURI(document.getElementById('f_linkTitle7').value));
+			localStorage.setItem('linkTitle8', encodeURI(document.getElementById('f_linkTitle8').value));
+			localStorage.setItem('linkTitle9', encodeURI(document.getElementById('f_linkTitle9').value));
+			localStorage.setItem('linkTitle10', encodeURI(document.getElementById('f_linkTitle10').value));
+			localStorage.setItem('linkTitle11', encodeURI(document.getElementById('f_linkTitle11').value));
+			localStorage.setItem('linkTitle12', encodeURI(document.getElementById('f_linkTitle12').value));
+			localStorage.setItem('link1', encodeURI(document.getElementById('f_link1').value));
+			localStorage.setItem('link2', encodeURI(document.getElementById('f_link2').value));
+			localStorage.setItem('link3', encodeURI(document.getElementById('f_link3').value));
+			localStorage.setItem('link4', encodeURI(document.getElementById('f_link4').value));
+			localStorage.setItem('link5', encodeURI(document.getElementById('f_link5').value));
+			localStorage.setItem('link6', encodeURI(document.getElementById('f_link6').value));
+			localStorage.setItem('link7', encodeURI(document.getElementById('f_link7').value));
+			localStorage.setItem('link8', encodeURI(document.getElementById('f_link8').value));
+			localStorage.setItem('link9', encodeURI(document.getElementById('f_link9').value));
+			localStorage.setItem('link10', encodeURI(document.getElementById('f_link10').value));
+			localStorage.setItem('link11', encodeURI(document.getElementById('f_link11').value));
+			localStorage.setItem('link12', encodeURI(document.getElementById('f_link12').value));
+			greetings();populateLinks()">Save</a>
+			<!-- UGLY SPAGHETTI CODE. UGLY! -->
+		</div>
+		
+		<div class="search" id="search">
+		<form action="http://www.google.com/search" method="get"><input type="text" name="q" size="50"><input type="submit" value="Google Search"></form>
+		</div>
+		
+		<a href="javascript:void(0)" onClick="showPopup('config');">Config</a>
+	</body>
+</html>
