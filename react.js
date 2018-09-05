@@ -15,3 +15,6 @@ const App = () => (
 )
 
 export default App
+
+const domContainer = document.querySelector('#react_container');
+ReactDOM.render(e(App), domContainer);
