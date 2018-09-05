@@ -1,20 +1,34 @@
 import * as React from 'react'
-import WidgetBot from '@widgetbot/react-embed'
+import WidgetBot, { API } from '@widgetbot/react-embed'
 
-const App = () => (
-  <WidgetBot
-    server="299881420891881473"
-    channel="355719584830980096"
-    onAPI={(api) => {
-      /*api.on('signIn', user => {
-        console.log(`Guest signed in as ${user.name}`, user)
-        api.emit('sendMessage', 'Hello world')
-      })*/
-    }}
-  />
-)
+class App extends React.Component {
+  api: API
+
+  onAPI(api: API) {
+    this.api = api
+    api.on('signIn', user => {
+      console.log(`Signed in as ${user.name}`, user)
+    })
+  }
+
+  handleClick() {
+    this.api.emit('sendMessage', `Hello world! from \`@widgetbot/react-embed\``)
+  }
+
+  render() {
+    return (
+      <div>
+        <button onClick={this.handleClick.bind(this)}>
+          {`Send "Hello world"`}
+        </button>
+        <WidgetBot
+          server="299881420891881473"
+          channel="355719584830980096"
+          onAPI={this.onAPI.bind(this)}
+        />
+      </div>
+    )
+  }
+}
 
 export default App
-
-const domContainer = document.querySelector('#react_container');
-ReactDOM.render(e(App), domContainer);
