@@ -1,6 +1,43 @@
-<!DOCTYPE html>
 <html>
-<body>
-<h1>Never mind.</h1>
-</body>
+	<head>
+	<link rel="stylesheet" type="text/css" href="css.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="https://www.youtube.com/iframe_api"></script>
+	<script src="tv.js?1"></script>
+	<title>Reddit-based TV. FOREVER.</title>
+	</head>
+	
+	<body>
+		<div id="menubar">
+			<div id="channelSelector">
+				<select id="channels">
+					<!-- A nice list of subreddits -->
+					<option value="https://www.reddit.com/r/90scommercials.json?limit=100">90's Commercials</option>
+					<option value="https://www.reddit.com/r/90smusic.json?limit=100">90's Music</option>
+					<option value="https://www.reddit.com/r/80scommercials.json?limit=100">80's Commercials</option>
+					<option value="https://www.reddit.com/r/AccidentalComedy.json?limit=100">Accidental Comedy</option>
+					<option value="https://www.reddit.com/r/ArtisanVideos.json?limit=100">Artisan Videos</option>
+					<option value="https://www.reddit.com/r/AwfulCommercials.json?limit=100">Awful Commercials</option>
+					<option value="https://www.reddit.com/r/badAnimation.json?limit=100">Bad Animation</option>
+					<option value="https://www.reddit.com/r/badGames.json?limit=100">Bad Games</option>
+					<option value="https://www.reddit.com/r/Documentaries.json?limit=100">Documentaries</option>
+					<option value="https://www.reddit.com/r/dubstep.json?limit=100">Dubstep</option>
+					<option value="https://www.reddit.com/r/FullAlbumsonYouTube.json?limit=100">Full Albums</option>
+					<option value="https://www.reddit.com/r/FullCartoonsonYouTube.json?limit=100">Full Cartoons</option>
+					<option value="https://www.reddit.com/r/FullConcertonYouTube.json?limit=100">Full Concerts</option>
+					<option value="https://www.reddit.com/r/fullmoviesonyoutube.json?limit=100">Full Movies</option>
+					<option value="https://www.reddit.com/r/FullTVshowsonYouTube.json?limit=100">Full TV Shows</option>
+					<option value="https://www.reddit.com/r/idiotsfightingthings.json?limit=100">Idiots Fighting Things</option>					
+					<option value="https://www.reddit.com/r/InterdimensionalCable.json?limit=100">Interdimensional Cable (NSFW)</option>
+					<option value="https://www.reddit.com/r/Lectures.json?limit=100">Lectures</option>
+					<option value="https://www.reddit.com/r/trailers.json?limit=100">Movie Trailers</option>
+					<option value="https://www.reddit.com/r/oldtrailers.json?limit=100">Old Movie Trailers</option>
+					<option value="https://www.reddit.com/r/playitagainsam.json?limit=100">Play it again, Sam</option>
+					<option value="https://www.reddit.com/r/woahtube.json?limit=100">Woahtube</option>
+				</select>
+				<button id="changeChannel" class="myButton">Change Channel</button>
+			</div>
+			<div id="currentVideo">Loading Channel...</div>
+		</div>
+		<div id="tv"></div>
 </html>
