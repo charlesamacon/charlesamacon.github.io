@@ -121,7 +121,10 @@
               if (!when) {
                 when = event.start.date;
               }
-              appendPre(event.summary + "\n" + 'AT FUCKING ' + when)
+              appendPre(event.summary)
+              appendPre('AT FUCKING')
+              appendPre(when)
+              appendPre('IN THE FUCKING [TIME]')
             }
           } else {
             appendPre('No upcoming events found.');
