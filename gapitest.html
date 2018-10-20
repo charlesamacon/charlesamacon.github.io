@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>EFFING CALENDAR v.15</title>
+    <title>EFFING CALENDAR v.16</title>
     <meta charset="utf-8" />
     <style>
       body {
@@ -22,8 +22,6 @@
     </style>
   </head>
   <body>
-    <p>Google Calendar API Quickstart</p>
-
     <!--Add buttons to initiate auth sequence and sign out-->
     <button id="authorize_button" style="display: none;">Authorize</button>
     <button id="signout_button" style="display: none;">Sign Out</button>
@@ -111,8 +109,8 @@
        *
        * @param {string} message Text to be placed in pre element.
        */
-      function appendPre(message) {
-        var pre = document.getElementById('content');
+      function appendPre(location, message) {
+        var pre = document.getElementById(location);
         var textContent = document.createTextNode(message + '\n');
         pre.appendChild(textContent);
       }
@@ -131,7 +129,7 @@
           'orderBy': 'startTime'
         }).then(function(response) {
           var events = response.result.items;
-          appendPre("<h1>" + "YOU'VE GOT TO BE AT FUCKING:" + "</h1>");
+          appendPre('content', "YOU'VE GOT TO BE AT FUCKING:");
           if (events.length > 0) {
             for (i = 0; i < events.length; i++) {
               var event = events[i];
@@ -139,10 +137,10 @@
               if (!when) {
                 when = event.start.date;
               }
-              appendPre(event.summary)
-              appendPre('AT FUCKING')
-              appendPre(when)
-              appendPre('IN THE FUCKING [TIME]')
+              appendPre('content', event.summary)
+              appendPre('content', 'AT FUCKING')
+              appendPre('content', when)
+              appendPre('content', 'IN THE FUCKING [TIME]')
               
               // TODO: Parse DateTime object and get the hour from it
               // Once we do that, we determine if it is morning, and display either Morning / Afternoon / Evening, etc.
@@ -152,7 +150,7 @@
               // TODO: That's about it, this is a silly project.
             }
           } else {
-            appendPre('No upcoming events found.');
+            appendPre('content', 'No upcoming events found.');
           }
         });
       }
