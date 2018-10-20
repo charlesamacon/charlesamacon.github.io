@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>EFFING CALENDAR v.19</title>
+    <title>EFFING CALENDAR v.20</title>
     <meta charset="utf-8" />
     <style>
       body {
@@ -48,7 +48,7 @@
 			}
 		}
       
-      h1 {
+      h1, h6 {
 		font-family: 'Open Sans';
 		font-weight: 300;
         color: white;
@@ -70,15 +70,15 @@
 
 	<div class="page_content">
 		<!-- You've got to be at fucking: -->
-		<h1><pre id="intro"></pre></h1>
+		<h1><pre id="intro"></pre>
 		<!-- LOCATION / EVENT -->
-		<h1><pre id="content"></pre></h1>
+		<pre id="content"></pre>
 		<!-- AT FUCKING -->
-		<h1><pre id="timeline1" style="color: red;"></pre></h1>
+		<pre id="timeline1" style="color: red;"></pre><
 		<!-- TIME -->
-		<h1><pre id="timeline2"></pre></h1>
+		<pre id="timeline2"></pre><
 		<!-- IN THE MORNING / AFTERNOON / EVENING -->
-		<h1><pre id="timeline3"></pre></h1>
+		<pre id="timeline3"></pre></h1>
 	</div>
 	
 	<!-- I'd like it if we could make it say something like IN 10 FUCKING MINUTES -->
@@ -171,7 +171,7 @@
           'orderBy': 'startTime'
         }).then(function(response) {
           var events = response.result.items;
-          appendPre('intro', "YOU'VE GOT TO BE AT FUCKING:");
+          appendPre('intro', "You've got to be at fucking");
           if (events.length > 0) {
             for (i = 0; i < events.length; i++) {
               var event = events[i];
@@ -180,9 +180,9 @@
                 when = event.start.date;
               }
               appendPre('content', event.summary)
-              appendPre('timeline1', 'AT FUCKING')
+              appendPre('timeline1', 'at fucking')
               appendPre('timeline2', when)
-              appendPre('timeline3', 'IN THE FUCKING [TIME]')
+              appendPre('timeline3', 'in the fucking')
               
               // TODO: Parse DateTime object and get the hour from it
               // Once we do that, we determine if it is morning, and display either Morning / Afternoon / Evening, etc.
