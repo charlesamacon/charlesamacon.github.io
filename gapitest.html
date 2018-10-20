@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>EFFING CALENDAR v.16</title>
+    <title>EFFING CALENDAR v.17</title>
     <meta charset="utf-8" />
     <style>
       body {
@@ -28,15 +28,15 @@
 
 	<div class="page_content">
 		<!-- You've got to be at fucking: -->
-		<pre id="intro"></pre>
+		<h1><pre id="intro"></pre></h1>
 		<!-- LOCATION / EVENT -->
 		<h1><pre id="content"></pre></h1>
 		<!-- AT FUCKING -->
-		<pre id="timeline1"></pre>
+		<h1><pre id="timeline1" style="color: red;"></pre></h1>
 		<!-- TIME -->
-		<pre id="timeline2"></pre>
+		<h1><pre id="timeline2"></pre></h1>
 		<!-- IN THE MORNING / AFTERNOON / EVENING -->
-		<pre id="timeline3"></pre>
+		<h1><pre id="timeline3"></pre></h1>
 	</div>
 	
 	<!-- I'd like it if we could make it say something like IN 10 FUCKING MINUTES -->
@@ -129,7 +129,7 @@
           'orderBy': 'startTime'
         }).then(function(response) {
           var events = response.result.items;
-          appendPre('content', "YOU'VE GOT TO BE AT FUCKING:");
+          appendPre('intro', "YOU'VE GOT TO BE AT FUCKING:");
           if (events.length > 0) {
             for (i = 0; i < events.length; i++) {
               var event = events[i];
@@ -138,9 +138,9 @@
                 when = event.start.date;
               }
               appendPre('content', event.summary)
-              appendPre('content', 'AT FUCKING')
-              appendPre('content', when)
-              appendPre('content', 'IN THE FUCKING [TIME]')
+              appendPre('timeline1', 'AT FUCKING')
+              appendPre('timeline2', when)
+              appendPre('timeline3', 'IN THE FUCKING [TIME]')
               
               // TODO: Parse DateTime object and get the hour from it
               // Once we do that, we determine if it is morning, and display either Morning / Afternoon / Evening, etc.
@@ -150,7 +150,7 @@
               // TODO: That's about it, this is a silly project.
             }
           } else {
-            appendPre('content', 'No upcoming events found.');
+            appendPre('content', "YOU'VE GOT FUCKING /nNOTHING /nTO DO";
           }
         });
       }
